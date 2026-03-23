@@ -7,3 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require 'faker'
+
+50.times do
+  Product.create!(
+    title: Faker::Commerce.product_name,
+    description: Faker::Lorem.paragraph(sentence_count: 2),
+    preview_img: 'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp')
+end
