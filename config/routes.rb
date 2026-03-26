@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+  resources :shared_purchase_links, only: [ :create ] do
+    member do
+      get "connect"
+    end
+  end
+
   resources :products
+
 
   root to: "products#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

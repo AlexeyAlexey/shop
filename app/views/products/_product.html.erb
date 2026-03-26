@@ -1,4 +1,7 @@
-<div id="<%= dom_id product %>" class="card bg-base-100 shadow-sm transition-shadow hover:shadow-md">
+<div id="<%= dom_id product %>" class="card relative bg-base-100 shadow-sm transition-shadow hover:shadow-md">
+  <%if Current.shared_purchase_link_id.present? %>
+    <%= render 'share_button' %>
+  <%end%>
   <figure>
     <%= image_tag(product.preview_img, alt: 'Shoes') %>
   </figure>

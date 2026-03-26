@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.all
+    @show_share_purchased_link_modal = params.permit(:show_share_purchased_link_modal) || false
   end
 
   # GET /products/1 or /products/1.json

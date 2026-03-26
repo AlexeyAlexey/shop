@@ -2,3 +2,6 @@
 import { application } from "controllers/application"
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
+
+// import { SharedPurchasedLinksController } from "controllers/shared_purchased_links_controller"
+// application.register("shared_purchased_links", SharedPurchasedLinksController)

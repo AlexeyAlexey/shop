@@ -52,6 +52,17 @@
               <a class="btn text-xl btn-ghost">daisyUI</a>
             </div>
             <div class="navbar-end">
+              <%= form_with(url: shared_purchase_links_path, method: :post, data: { turbo_frame: :modal }) do |form| %>
+                <%= form.button type: :submit, class: "btn btn-circle btn-ghost", 'aria-label' =>  "Share", title: "Share" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <circle cx="18" cy="6" r="2" stroke-width="2" />
+                    <circle cx="6" cy="12" r="2" stroke-width="2" />
+                    <circle cx="18" cy="18" r="2" stroke-width="2" />
+                    <path d="M8 12 L16 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M8 12 L16 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                <% end %>
+              <% end %>
               <!-- cart -->
               <div class="btn btn-circle btn-ghost">
                 <div class="indicator">
@@ -63,7 +74,10 @@
               </div>
             </div>
           </div>
-          <%= yield %>
+          <div class="relative p-4">
+            <%= yield %>
+            <%= turbo_frame_tag :modal %>
+          </div>
           <div class="flex w-full justify-center">
             <div class="join grid max-w-xs grid-cols-2">
               <button class="btn join-item btn-outline">Previous</button>
