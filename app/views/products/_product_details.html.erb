@@ -1,0 +1,67 @@
+ <!-- product details -->
+<div class="card bg-base-100 shadow-md">
+  <div class="card-body">
+    <h1 class="card-title text-2xl">Product name</h1>
+    <div class="mt-3 grid gap-3 sm:grid-cols-2">
+      <div>
+        <div class="mb-1 text-sm font-medium">Color</div>
+        <div class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3">
+          <label class="label cursor-pointer items-center gap-3 rounded-lg border border-base-300 p-3 sm:p-2 w-full sm:w-auto">
+            <input type="radio" name="color" class="radio" checked />
+            <span class="h-5 w-5 rounded-full border bg-red-500"></span>
+            <span class="text-sm">Red</span>
+          </label>
+          <label class="label cursor-pointer items-center gap-3 rounded-lg border border-base-300 p-3 sm:p-2 w-full sm:w-auto">
+            <input type="radio" name="color" class="radio" />
+            <span class="h-5 w-5 rounded-full border bg-blue-500"></span>
+            <span class="text-sm">Blue</span>
+          </label>
+          <label class="label cursor-pointer items-center gap-3 rounded-lg border border-base-300 p-3 sm:p-2 w-full sm:w-auto">
+            <input type="radio" name="color" class="radio" />
+            <span class="h-5 w-5 rounded-full border bg-black"></span>
+            <span class="text-sm">Black</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <div class="mb-1 text-sm font-medium">Size</div>
+        <div class="join">
+          <input class="join-item btn btn-sm" type="radio" name="size" aria-label="S" />
+          <input class="join-item btn btn-sm btn-active" type="radio" name="size" aria-label="M" checked />
+          <input class="join-item btn btn-sm" type="radio" name="size" aria-label="L" />
+          <input class="join-item btn btn-sm" type="radio" name="size" aria-label="XL" />
+        </div>
+      </div>
+    </div>
+    <p class="text-base-content/70">A short description of the product highlighting key features and benefits.</p>
+    <div class="mt-2 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <button class="btn btn-outline btn-sm" onclick="decrease()">−</button>
+        <input type="number" id="quantity" class="input-bordered input w-20 [appearance:textfield]! appearance-none! text-center [-moz-appearance:textfield]! [&::-webkit-inner-spin-button]:appearance-none! [&::-webkit-outer-spin-button]:appearance-none!" value="1" min="1" max="100" />
+        <button class="btn btn-outline btn-sm" onclick="increase()">+</button>
+      </div>
+      <div class="text-xl font-bold">$100</div>
+    </div>
+    <div class="mt-4 flex flex-col gap-2 sm:flex-row">
+      <button class="btn w-full btn-neutral sm:w-auto">Add to cart</button>
+      <button class="btn w-full btn-outline sm:w-auto">Buy now</button>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="collapse-plus collapse border border-base-300 bg-base-100">
+    <input type="checkbox" checked="checked" />
+    <div class="collapse-title font-semibold">How do I create an account?</div>
+    <div class="collapse-content text-sm">Click the "Sign Up" button in the top right corner and follow the registration process.</div>
+  </div>
+  <div class="collapse-plus collapse border border-base-300 bg-base-100">
+    <input type="checkbox" />
+    <div class="collapse-title font-semibold">I forgot my password. What should I do?</div>
+    <div class="collapse-content text-sm">Click on "Forgot Password" on the login page and follow the instructions sent to your email.</div>
+  </div>
+  <div class="collapse-plus collapse border border-base-300 bg-base-100">
+    <input type="checkbox" />
+    <div class="collapse-title font-semibold">How do I update my profile information?</div>
+    <div class="collapse-content text-sm">Go to "My Account" settings and select "Edit Profile" to make changes.</div>
+  </div>
+</div>

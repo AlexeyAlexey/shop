@@ -1,0 +1,13 @@
+<div id="shared-product-<%= shared_purchase.product_id %>" class="flex items-center justify-end gap-1">
+  <%= link_to product_path(id: shared_purchase.product_id), data: { turbo_frame: :modal },
+                                                            class: "size-10 rounded-full overflow-hidden bg-base-300 cursor-pointer", 
+                                                            "aria-label" => "Open avatar modal" do %>
+    <%= image_tag(shared_purchase.product.preview_img, alt: "Avatar", class: "size-full object-cover") %>
+  <% end %>
+  <%= button_to shared_purchase_path(product_id: shared_purchase.product_id), method: :delete, data: { turbo_method: :delete }, class: "btn btn-circle btn-ghost btn-xs", 
+        title: "Close panel", "aria-label" => "Close panel" do %>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  <% end %>
+</div>

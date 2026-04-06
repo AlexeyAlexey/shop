@@ -1,7 +1,10 @@
-<% content_for :title, "Showing product" %>
-<div class="card bg-base-100 shadow-sm transition-shadow hover:shadow-md">
+<div id="<%= dom_id product %>" class="card relative bg-base-100 shadow-sm transition-shadow hover:shadow-md">
+  <%if show_shared_button %>
+    <%= render 'share_button', product: product, 
+                               button_class: "btn btn-circle btn-ghost btn-sm absolute left-2 top-2 z-10" %>
+  <%end%>
   <figure>
-    <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
+    <%= image_tag(product.preview_img, alt: 'Shoes') %>
   </figure>
   <div class="flex flex-col items-center justify-center gap-4">
     <div class="rating">
@@ -13,10 +16,10 @@
     </div>
   </div>
   <div class="card-body flex flex-col justify-center gap-4">
-    <h2 class="card-title">Card Title</h2>
-    <p>Tool description goes here</p>
+    <h2 class="card-title"><%= product.title %></h2>
+    <p> <%= product.description %></p>
     <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
+      <%= button_to "View", product_path(id: product.id), method: :get, data: { turbo_frame: :modal }, class: "btn btn-primary"  %>
     </div>
   </div>
 </div>

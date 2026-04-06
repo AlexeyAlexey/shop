@@ -1,4 +1,6 @@
-<button class="btn btn-circle btn-ghost btn-sm absolute left-2 top-2 z-10" aria-label="Share" title="Share">
+<%# locals: (product:, button_class:, button_form_class: "") -%>
+<%= button_to share_shared_purchase_path(product_id: product.id), method: :post, class: button_class, 
+       form_class: button_form_class, 'aria-label' => "Share", title: "Share" do %>
   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <circle cx="18" cy="6" r="2" stroke-width="2" />
     <circle cx="6" cy="12" r="2" stroke-width="2" />
@@ -6,4 +8,4 @@
     <path d="M8 12 L16 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     <path d="M8 12 L16 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
   </svg>
-</button>
+<% end %>

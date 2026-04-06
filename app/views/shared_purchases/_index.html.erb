@@ -1,0 +1,28 @@
+<%= turbo_frame_tag "shared-purchases-aside" do %>
+  <aside class="fixed right-0 top-24 sm:top-28 z-[9999] pointer-events-auto">
+    <div class="relative">
+      <input id="hide-panel" type="checkbox" class="peer sr-only" />
+      <!-- Open state (unchecked): show chevrons-right -->
+      <label for="hide-panel" class="btn btn-primary btn-sm btn-circle absolute -top-4 right-0 sm:right-1 z-50 ring-1 ring-base-300 peer-checked:hidden" title="Close panel">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M6 5l7 7-7 7" />
+        </svg>
+      </label>
+      <!-- Closed state (checked): show chevrons-left -->
+      <label for="hide-panel" class="hidden btn btn-primary btn-sm btn-circle absolute -top-4 right-0 sm:right-1 z-50 ring-1 ring-base-300 peer-checked:inline-flex" title="Open panel">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7M18 19l-7-7 7-7" />
+        </svg>
+      </label>
+      <div class="card relative w-16 sm:w-20 bg-base-200/90 backdrop-blur shadow-lg ring-1 ring-base-300 peer-checked:hidden">
+        <div class="card-body p-2 pl-5 flex items-center justify-center">
+          <div id="shared-purchases-list" class="flex flex-col items-end gap-3">
+            <% @shared_purchases.each do |shaered_purchace| %>
+              <%= render "shared_purchase", shared_purchase: shaered_purchace %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+<% end %>

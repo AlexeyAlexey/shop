@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
+  resources :shared_purchases, only: [ :index, :destroy ], param: "product_id" do
+    member do
+      post "share"
+    end
+  end
+
   resources :shared_purchase_links, only: [ :create ] do
     member do
       get "connect"
     end
   end
 
-  resources :products
+  resources :products, only: [ :index, :show ]
 
 
   root to: "products#index"

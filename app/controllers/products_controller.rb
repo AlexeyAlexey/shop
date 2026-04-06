@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i[ show ]
 
   # GET /products or /products.json
   def index
@@ -7,54 +7,10 @@ class ProductsController < ApplicationController
     @show_share_purchased_link_modal = params.permit(:show_share_purchased_link_modal) || false
   end
 
-  # GET /products/1 or /products/1.json
+  # GET /products/1
   def show
-  end
-
-  # GET /products/new
-  def new
-    @product = Product.new
-  end
-
-  # GET /products/1/edit
-  def edit
-  end
-
-  # POST /products or /products.json
-  def create
-    @product = Product.new(product_params)
-
     respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: "Product was successfully created." }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /products/1 or /products/1.json
-  def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: "Product was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /products/1 or /products/1.json
-  def destroy
-    @product.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to products_path, notice: "Product was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
+      format.html { render partial: "product_dialog", locals: { product: @product } }
     end
   end
 
@@ -67,5 +23,10 @@ class ProductsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def product_params
       params.expect(product: [ :title, :description, :preview_img, :images ])
+    end
+
+    def find_product
+      # TODO render notice if product cannot be found
+      @product = Product.find_by(id: params_product_id)
     end
 end

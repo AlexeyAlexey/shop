@@ -1,0 +1,20 @@
+<div class="carousel flex w-full snap-x snap-mandatory overflow-x-auto scroll-smooth">
+  <%last_img_index = imgs.size - 1%>
+  <% imgs.each_with_index do |img, index| %>
+    <div id=<%= "slide#{index}" %> class="relative carousel-item w-full flex-none snap-center">
+      <img src=<%= img %> class="w-full" />
+      <div class="absolute top-1/2 right-5 left-5 flex -translate-y-1/2 transform justify-between">
+        <% if index == 0 %>
+          <a href=<%= "#slide#{imgs.size - 1}" %> class="btn btn-circle" data-turbo="false">❮</a>
+          <a href=<%= "#slide#{index + 1}" %> class="btn btn-circle" data-turbo="false">❯</a>
+        <%elsif index == last_img_index %>
+          <a href=<%= "#slide#{index - 1}" %> class="btn btn-circle" data-turbo="false">❮</a>
+          <a href=<%= "#slide#{0}" %> class="btn btn-circle" data-turbo="false">❯</a>
+        <%else %>
+          <a href=<%= "#slide#{index - 1}" %> class="btn btn-circle" data-turbo="false">❮</a>
+          <a href=<%= "#slide#{index + 1}" %> class="btn btn-circle" data-turbo="false">❯</a>
+        <%end%>
+      </div>
+    </div>
+  <% end %>
+</div>

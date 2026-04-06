@@ -1,41 +1,18 @@
 <% content_for :title, "Products" %>
-<% if @products.any? %>
-  <aside class="fixed right-0 top-24 sm:top-28 z-[9999] pointer-events-auto">
-    <div class="relative">
-      <input id="hide-panel" type="checkbox" class="peer sr-only" />
-      <!-- Open state (unchecked): show chevrons-right -->
-      <label for="hide-panel" class="btn btn-primary btn-sm btn-circle absolute -top-4 right-0 sm:right-1 z-50 ring-1 ring-base-300 peer-checked:hidden" title="Close panel">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M6 5l7 7-7 7" />
-        </svg>
-      </label>
-      <!-- Closed state (checked): show chevrons-left -->
-      <label for="hide-panel" class="hidden btn btn-primary btn-sm btn-circle absolute -top-4 right-0 sm:right-1 z-50 ring-1 ring-base-300 peer-checked:inline-flex" title="Open panel">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7M18 19l-7-7 7-7" />
-        </svg>
-      </label>
-      <div class="card relative w-16 sm:w-20 bg-base-200/90 backdrop-blur shadow-lg ring-1 ring-base-300 peer-checked:hidden">
-        <div class="card-body p-2 flex items-center justify-center">
-          <div class="flex flex-col items-center gap-3">
-            <div class="size-10 rounded-full bg-base-300"></div>
-            <div class="size-10 rounded-full bg-base-300"></div>
-            <div class="size-10 rounded-full bg-base-300"></div>
-            <div class="size-10 rounded-full bg-base-300"></div>
-            <div class="size-10 rounded-full bg-base-300"></div>
-            <div class="size-10 rounded-full bg-base-300"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </aside>
+<% if @products.any? && Current.shared_purchase_link_id.present? %>
+  <turbo-frame id="shared-purchases-aside" src="<%= shared_purchases_path %>">
+    Loading...
+  </turbo-frame>
 <%end%>
 <div id="products" class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3">
   <% if @products.any? %>
     <% @products.each do |product| %>
-      <%= render product %>
+      <%= render "product_card", product: product, show_shared_button: Current.shared_purchase_link_id.present? %>
     <% end %>
   <% else %>
     <p class="text-center my-10">No products found.</p>
   <% end %>
 </div>
+<% if Current.shared_purchase_link_id.present? %>
+  <%= turbo_stream_from Current.shared_purchase_link_id, :shared_purchases %>
+<%end%>

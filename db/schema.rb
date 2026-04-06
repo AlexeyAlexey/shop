@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_24_075719) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_07_074911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -19,6 +19,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_24_075719) do
     t.datetime "created_at", null: false
     t.string "description"
     t.string "preview_img"
+    t.string "slide_imgs", default: [], array: true
     t.string "title"
     t.datetime "updated_at", null: false
   end
@@ -26,5 +27,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_24_075719) do
   create_table "shared_purchase_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "shared_purchases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.uuid "product_id"
+    t.uuid "shared_purchase_link_id"
+    t.datetime "updated_at", null: false
+    t.index ["shared_purchase_link_id", "product_id"], name: "idx_on_shared_purchase_link_id_product_id_94dbaea2cb", unique: true
   end
 end
