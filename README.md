@@ -53,21 +53,22 @@ Run the following command to start the server.
 # Migrations
 
 added folders:
-  cable_migrate
-  cache_migrate
-  queue_migrate
+
+  - cable_migrate
+  - cache_migrate
+  - queue_migrate
 
 generated migrations:
-  rails generate migration InitCable
-  rails generate migration InitCache
-  rails generate migration InitQueue
+  - rails generate migration InitCable
+  - rails generate migration InitCache
+  - rails generate migration InitQueue
 
 copied to corresponding migration folders
 
 run:
-  rails db:create:cache
-  rails db:create:cable
-  rails db:create:queue
+  - rails db:create:cache
+  - rails db:create:cable
+  - rails db:create:queue
 
 
 # Seeds
